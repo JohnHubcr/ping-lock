@@ -51,7 +51,7 @@ void loop() {
   //Serial.print("\n");
   
   // If distance has reduced
-  if( !ok && ((distance/50) == 0 || (distance2/50) == 0) ){
+  if( !ok && ((distance/35) == 0 || (distance2/35) == 0) ){
       /*if(distance/50 == 0 && cur == 2){
         Serial.print("Leaving\n");
         cur = 0;
@@ -62,7 +62,7 @@ void loop() {
         cur = 2;
       }*/
 
-      if(distance/50 == 0){
+      if(distance/35 == 0){
         int go = 1;
         for(int i=0;i<250;i++){
           if(!go)break;
@@ -73,7 +73,7 @@ void loop() {
           digitalWrite(trigPin2, LOW);
           duration = pulseIn(echoPin2, HIGH); // Reads the echoPin, returns the sound wave travel time in microseconds
           distance2= duration*0.034/2; // Calculating the distance
-          if(distance2/50 == 0){
+          if(distance2/35 == 0){
             Serial.print("Entering\n");
             delay(1000);
             break;
@@ -81,7 +81,7 @@ void loop() {
           }
         }  
       }
-      else if(distance2/50 == 0){
+      else if(distance2/35 == 0){
         int go = 1;
         for(int i=0;i<250;i++){
           if(!go)break;
@@ -92,7 +92,7 @@ void loop() {
         digitalWrite(trigPin, LOW);
         duration = pulseIn(echoPin, HIGH); // Reads the echoPin, returns the sound wave travel time in microseconds
         distance= duration*0.034/2; // Calculating the distance       
-        if(distance/50 == 0){
+        if(distance/35 == 0){
           Serial.print("Leaving\n");
           delay(1000);
           go = 0;
