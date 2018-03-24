@@ -1,6 +1,9 @@
+#include <ThingSpeak.h>
+
 const int trigPin = 9;
 const int echoPin = 10;
-
+//unsigned long myChannelNumber = 458658;
+//const char *myWriteAPIKey = "XXXXXXXXXXXXXY";
 const int echoPin2 = 3;
 const int trigPin2 = 2;
 
@@ -19,6 +22,7 @@ void setup() {
   pinMode(trigPin2, OUTPUT); // Sets the trigPin as an Output
   pinMode(echoPin2, INPUT); // Sets the echoPin as an Input
   Serial.begin(9600); // Starts the serial communication
+  //ThingSpeak.begin(client);
 }
 void loop() {
   digitalWrite(trigPin, LOW); // Clears the trigPin
@@ -44,7 +48,7 @@ void loop() {
   if(ok)ct++;
 
   // After 200 iterations, define standard distance
-  if(ok && ct==200) {ok=0;Serial.print("Ready\n");}
+  if(ok && ct==2) {ok=0;Serial.print("Ready\n");}
   
   //Serial.print("USUAL DISTANCE: ");
   //Serial.print(usual_distance);
@@ -73,13 +77,13 @@ void loop() {
           digitalWrite(trigPin2, LOW);
           duration = pulseIn(echoPin2, HIGH); // Reads the echoPin, returns the sound wave travel time in microseconds
           distance2= duration*0.034/2; // Calculating the distance
-          if(distance2/35 == 0){
+          if(distance2/35 == 0 && go){
             Serial.print("Entering\n");
-            delay(1000);
             break;
             go = 0;
           }
-        }  
+        }
+      //  if(!go)delay(16000);  
       }
       else if(distance2/35 == 0){
         int go = 1;
@@ -92,13 +96,14 @@ void loop() {
         digitalWrite(trigPin, LOW);
         duration = pulseIn(echoPin, HIGH); // Reads the echoPin, returns the sound wave travel time in microseconds
         distance= duration*0.034/2; // Calculating the distance       
-        if(distance/35 == 0){
+        if(distance/35 == 0 && go){
           Serial.print("Leaving\n");
-          delay(1000);
           go = 0;
           break;
         }
       }
+    //if(!go)delay(16000);
     }
   }
+  delay(160);
 }
