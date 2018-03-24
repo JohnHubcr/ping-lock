@@ -3,20 +3,11 @@
 
 const int trigPin = 9;
 const int echoPin = 10;
-unsigned long myChannelNumber = 458658;
-//const char *myWriteAPIKey = "IX3YMMI4IUBRA9RY";
-
-String writeAPIKey = "IX3YMMI4IUBRA9RY";
-String channelID = "458658";
-
-// TCP socket initialize
-//TCPClient client;
-
 
 const int echoPin2 = 3;
 const int trigPin2 = 2;
 
-// defines variables
+// variables
 long duration;
 int distance;
 int distance2;
@@ -31,7 +22,6 @@ void setup() {
   pinMode(trigPin2, OUTPUT); // Sets the trigPin as an Output
   pinMode(echoPin2, INPUT); // Sets the echoPin as an Input
   Serial.begin(9600); // Starts the serial communication
-  //ThingSpeak.begin(client);
 }
 void loop() {
   digitalWrite(trigPin, LOW); // Clears the trigPin
@@ -52,26 +42,10 @@ void loop() {
 
   // Count number of iterations to calibrate
   if(ok)ct++;
-
-  // After 200 iterations, define standard distance
-  if(ok && ct==2) {ok=0;Serial.print("Ready\n");}
-  
-  //Serial.print("USUAL DISTANCE: ");
-  //Serial.print(usual_distance);
-  //Serial.print("\n");
+  if(ok && ct==20) {ok=0;Serial.print("Ready\n");}
   
   // If distance has reduced
   if( !ok && ((distance/35) == 0 || (distance2/35) == 0) ){
-      /*if(distance/50 == 0 && cur == 2){
-        Serial.print("Leaving\n");
-        cur = 0;
-      }
-      else if(distance/50 == 0 && cur == 0 )cur=1;
-      else if(distance2/50 == 0 && cur == 1){
-        Serial.print("Entering\n");
-        cur = 2;
-      }*/
-    
       if(distance/35 == 0){
         int go = 1;
         for(int i=0;i<250;i++){
@@ -87,14 +61,10 @@ void loop() {
             Serial.print("Entering\n");
             int x = 100;
             int y = 0;
-            //ThingSpeakUpdate("field1="+String(x)+"&field2="+String(y));
-            
             go = 0;
-            //delay(15000);
             break;
           }
         }
-        //if(!go)delay(16000);  
       }
       else if(distance2/35 == 0){
         int go = 1;
@@ -111,13 +81,10 @@ void loop() {
           Serial.print("Leaving\n");
           int x = 50;
           int y = 0;
-          //ThingSpeakUpdate("field1="+String(x)+"&field2="+String(y));
           go = 0;
-          //delay(15000);
           break;
         }
       }
-    //if(!go)delay(16000);
     }
   }
   delay(160);
