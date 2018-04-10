@@ -1,6 +1,6 @@
-# Ping Lock :lock:
+<h1 align="center"> Ping Lock :lock: </h1>
 
-Ping Lock is an IoT solution designed with the intent of adding intelligence to an unlocked door by notifying the user of any movement in or out of the respective room via Slack or any other free realtime instant messaging service.
+<p align = "center"> Ping Lock is an IoT solution designed with the intent of adding intelligence to an unlocked door by notifying the user of any movement in or out of the respective room via Slack or any other free realtime instant messaging service. </p>
 
 ## Instructions for set up
 ### Technologies needed -
@@ -35,10 +35,14 @@ Ping Lock is an IoT solution designed with the intent of adding intelligence to 
 ## Set up of Slack API
 * Register a developer account and acquire a (free) legacy token and input this into your Python Code.
 
+![](https://github.com/RameshAditya/ping-lock/blob/master/sample_slack_code.png)
+
 ## Set up of Python Interfacing
 * Ensure you mention the correct port number in the python code to help find the Arduino Board.
 * Ensure you have a Slack Developer Account with a Token Code by now and have defined it in your python code.
 * In the ```slack_message(message, channel)``` method, you may have to redefine some parameters in the ```sc.api_call()``` method to tailor this to your project.
+
+![](https://github.com/RameshAditya/ping-lock/blob/master/sample_python_code.png)
 
 ## Challenges faced during the development of this project
 * ThingSpeak API was the initial API, intended to be used but for some reason the HTTP POST Request wouldn't go through and data wouldn't write to the Cloud's Channel. Hence Slack was used, since Slack's API was well documented and is a popular messaging service for groups of people (relatable here in the use case of shared rooms; for roommates)
@@ -46,4 +50,4 @@ Ping Lock is an IoT solution designed with the intent of adding intelligence to 
 * The nature of the Arduino sketch's ```loop()``` method prevented us from easily being able to detect the direction of motion (i.e Entry or Exit) but the addition of a buffer time to detect if the other sensor went off too, helped get around this.
 * Python and Arduino can not simultaneously access the Arduino through the same port, preventing us from testing both output windows simultaneously, which costed us more time relatively.
 
-Good luck! :slightly_smiling_face:
+<p align = "center">Good luck! :slightly_smiling_face:</p>
