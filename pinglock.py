@@ -9,7 +9,8 @@ ser = serial.Serial('COM5',9600)
 temp = ''
 
 def slack_message(message, channel):
-    token = 'xoxp-335565557714-335467263395-335707145298-61b765cb2975e0dc054430a95a545ce3'
+    #Sample Slack Legacy Token -- replace this with your own Legacy Token, obtainable from Slack's website
+    token = 'xoxp-335565557714-335467263395-335707145298-61b765cb2975e0dc054430a95a545ce3' 
     sc = SlackClient(token)
     sc.api_call('chat.postMessage', channel=channel, 
                 text=message, username='Ping Lock Bot',
