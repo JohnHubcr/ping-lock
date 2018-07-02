@@ -26,7 +26,7 @@
 * Laptop with internet connectivity
 * Phone compatible with slack app
 
-#### Estimated cost of design is ~1,250₹
+#### Estimated cost of design (from scratch) is ~1,250 INR [a little under 20 USD]
 
 ## Set up of Arduino
 * Connect the GND of Ultrasonic Sensors to the GND of Arduino
